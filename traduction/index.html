@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<!-- <ul>
+	<li class="word">Dog</li>
+	<li class="word">Cat</li>
+</ul> -->
+
+<ul class="liste">
+	<li>Dog</li>
+	<li>Cat</li>
+	<li>Green</li>
+</ul>
+
+<script src="js/jquery.js"></script>
+<script>
+
+// let words = document.getElementsByClassName('word');
+// console.log(words);
+
+// for(let i = 0; i < words.length; i++) {
+// 	console.log(words[i]);
+// 	words[i].addEventListener('click', function() { // on ajoute un gestionnaire d'événement sur chaque élément <li>
+// 		let xhr = new XMLHttpRequest();
+// 		xhr.open('GET', 'traduction.php?mot='+this.textContent, true);
+// 		xhr.send();
+
+// 		xhr.onreadystatechange = function() { // cette fonction est appelée à chaque fois que l'état de la requete change
+// 			if(this.readyState === 4) {
+// 				console.log(this.responseText);
+// 				console.log(words[i]);
+// 				words[i].textContent = this.responseText;
+// 			}
+// 		}
+
+// 	})
+// }
+
+$('.liste').on('click', 'li', function() {
+	let that = $(this);
+	$.ajax({
+		method: 'GET',
+		url: 'traduction.php?mot='+that.text(),
+
+	}).done(function(data) {
+		that.text(data);
+	})
+})
+
+
+
+</script>
+</body>
+</html>
